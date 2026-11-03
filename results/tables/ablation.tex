@@ -1,0 +1,22 @@
+\begin{table}[t]
+\caption{Ablation study at $p=0.1$: mean delay (s), with the change relative to the full model in parentheses, and delay gap (s). Means over five seeds (three for the CV-only state on the real intersections)}
+\label{tab:ablation}
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}>{\raggedright\arraybackslash}p{4.3cm}cccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Synthetic} & \multicolumn{2}{c}{Cologne} & \multicolumn{2}{c}{Ingolstadt}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Variant & Delay & Gap & Delay & Gap & Delay & Gap\\
+\midrule
+Full model (SAC, loop--CV state, fused reward, same-signal fallback) & 114.8 & 4.3 & 24.1 & 1.5 & 18.2 & 0.9\\
+Same-signal $\to$ pooled fallback & 111.3 (-3.5) & 7.9 & 25.8 (+1.7) & 1.3 & 18.3 (+0.1) & 0.9\\
+Without the pressure term (and pooled fallback) & 115.1 (+0.3) & 6.2 & 27.0 (+2.9) & 4.3 & 19.0 (+0.8) & 1.2\\
+Stratified cost $\to$ CV-only (naive) cost & 108.5 (-6.3) & 20.7 & 53.4 (+29.3) & 16.2 & 21.2 (+3.0) & 4.5\\
+Without the loop-count state channel$^a$ & 151.3 (+36.5) & 84.1 & 36.2 (+12.1) & 18.4 & 35.5 (+17.3) & 19.6\\
+Fused reward $\to$ pressure only & 127.4 (+12.7) & 10.1 & 24.5 (+0.4) & 0.9 & 17.6 (-0.6) & 0.5\\
+Pressure only, SAC $\to$ double DQN & 118.3 (+3.6) & 5.1 & 21.2 (-2.9) & -0.2 & 16.5 (-1.7) & 0.1\\
+\botrule
+\end{tabular*}
+\footnotetext{$^a$CV-only state with the stratified reward (the fused reward was not trained with the CV-only state).}
+\end{table}

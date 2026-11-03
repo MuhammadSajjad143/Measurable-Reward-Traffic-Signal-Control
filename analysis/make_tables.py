@@ -339,6 +339,75 @@ def compact_table(s):
     open(os.path.join(OUT, "main_p01.tex"), "w").write("\n".join(lines) + "\n")
 
 
+def ablation_table(s):
+    """Effect of removing or replacing each component of the proposed controller (p = 0.1)."""
+    nets = [("1tls_3x3", "Synthetic"), ("cologne1", "Cologne"), ("ingolstadt1", "Ingolstadt")]
+    full = ("sac_auto_loopstate", "fused_cs")
+    rows = [(full, "Full model (SAC, loop--CV state, fused reward, same-signal fallback)"),
+            (("sac_auto_loopstate", "fused"), "Same-signal $\\to$ pooled fallback"),
+            (("sac_auto_loopstate", "stratified"), "Without the pressure term (and pooled fallback)"),
+            (("sac_auto_loopstate", "naive"), "Stratified cost $\\to$ CV-only (naive) cost"),
+            (("sac_auto", "stratified"), "Without the loop-count state channel$^a$"),
+            (("sac_auto_loopstate", "pressure"), "Fused reward $\\to$ pressure only"),
+            (("dqn_loopstate", "pressure"), "Pressure only, SAC $\\to$ double DQN")]
+    get = lambda g, k: g[(g.method == k[0]) & (g.reward == k[1]) & np.isclose(g.eval_p, 0.1)]
+    lines = ["\\begin{table}[t]", "\\caption{Ablation study at $p=0.1$: mean delay (s), with the change relative to the full "
+             "model in parentheses, and delay gap (s). Means over five seeds (three for the CV-only state on the real "
+             "intersections)}", "\\label{tab:ablation}", "\\scriptsize", "\\setlength{\\tabcolsep}{2.4pt}",
+             "\\begin{tabular*}{\\textwidth}{@{\\extracolsep\\fill}>{\\raggedright\\arraybackslash}p{4.3cm}cccccc@{}}", "\\toprule",
+             " & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{n}}}" for _, n in nets) + "\\\\",
+             "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}",
+             "Variant & " + " & ".join("Delay & Gap" for _ in nets) + "\\\\", "\\midrule"]
+    for k, name in rows:
+        vals = []
+        for net, _ in nets:
+            g = main_rows(s, net)
+            h, f = get(g, k), get(g, full)
+            if h.empty:
+                vals += ["--", "--"]
+                continue
+            d, d0 = h.delay_all.iloc[0], f.delay_all.iloc[0]
+            vals += [f"{d:.1f}" if k == full else f"{d:.1f} ({d - d0:+.1f})", f"{h.delay_gap.iloc[0]:.1f}"]
+        lines.append(f"{name} & " + " & ".join(vals) + "\\\\")
+    lines += ["\\botrule", "\\end{tabular*}", "\\footnotetext{$^a$CV-only state with the stratified reward (the fused "
+              "reward was not trained with the CV-only state).}", "\\end{table}"]
+    open(os.path.join(OUT, "ablation.tex"), "w").write("\n".join(lines) + "\n")
+
+
+def basepaper_table(s):
+    """Proposed controller against the re-implemented base methods (p = 0.1), with relative improvement."""
+    nets = [("1tls_3x3", "Synthetic"), ("cologne1", "Cologne"), ("ingolstadt1", "Ingolstadt")]
+    prop = ("sac_auto_loopstate", "fused_cs")
+    rows = [(("fu2026_qm_atsc", "-"), "QM-ATSC, Fu et al.\\ \\citep{fu2026}$^\\dagger$"),
+            (("dqn", "privileged"), "DQN, CV-only state, all-vehicle reward \\citep{ducrocq2023}$^\\dagger$"),
+            (("dqn_loopstate", "pressure"), "PressLight-style DQN \\citep{wei2019}$^\\dagger$"),
+            (("max_pressure_loop", "-"), "Max-pressure, loop counts \\citep{varaiya2013}$^\\dagger$")]
+    get = lambda g, k: g[(g.method == k[0]) & (g.reward == k[1]) & np.isclose(g.eval_p, 0.1)]
+    lines = ["\\begin{table}[t]", "\\caption{Quantitative comparison with the base methods at $p=0.1$ in the same setting "
+             "(same networks, 20 test scenarios and metric): mean delay (s) and relative change of the proposed controller "
+             "(negative: proposed is faster)}", "\\label{tab:basecmp}", "\\scriptsize", "\\setlength{\\tabcolsep}{2.4pt}",
+             "\\begin{tabular*}{\\textwidth}{@{\\extracolsep\\fill}>{\\raggedright\\arraybackslash}p{4.6cm}cccccc@{}}", "\\toprule",
+             " & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{n}}}" for _, n in nets) + "\\\\",
+             "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}",
+             "Method & " + " & ".join("Delay & Change" for _ in nets) + "\\\\", "\\midrule"]
+    for k, name in rows + [(prop, "\\textbf{Proposed}")]:
+        vals = []
+        for net, _ in nets:
+            g = main_rows(s, net)
+            h, f = get(g, k), get(g, prop)
+            if h.empty:
+                vals += ["--", "--"]
+                continue
+            d, d0 = h.delay_all.iloc[0], f.delay_all.iloc[0]
+            vals += [f"{d:.1f}", "--" if k == prop else f"{100 * (d0 - d) / d:+.1f}\\%"]
+        lines.append(f"{name} & " + " & ".join(vals) + "\\\\")
+    lines += ["\\botrule", "\\end{tabular*}", "\\footnotetext{$^\\dagger$Re-implemented in the present setting (QM-ATSC "
+              "adapted to the phases used here; DQN of the base code with the cost of Eq.~\\ref{eq:cost} as the "
+              "all-vehicle reward, trained on the synthetic intersection only; PressLight-style DQN with the proposed "
+              "state and count-based pressure). Five seeds per learner, three for the DQN of \\citep{ducrocq2023}.}", "\\end{table}"]
+    open(os.path.join(OUT, "basecmp.tex"), "w").write("\n".join(lines) + "\n")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     s = pd.read_csv(os.path.join(RES, "summary.csv"))
@@ -359,6 +428,8 @@ def main():
     scenario_table(s)
     sensitivity_table(s)
     compact_table(s)
+    ablation_table(s)
+    basepaper_table(s)
     if (s.net == "cologne3").any():
         multi_table(s)
     if (s.net == "ingolstadt7").any():

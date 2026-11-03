@@ -1,0 +1,20 @@
+\begin{table}[t]
+\caption{Quantitative comparison with the base methods at $p=0.1$ in the same setting (same networks, 20 test scenarios and metric): mean delay (s) and relative change of the proposed controller (negative: proposed is faster)}
+\label{tab:basecmp}
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}>{\raggedright\arraybackslash}p{4.6cm}cccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Synthetic} & \multicolumn{2}{c}{Cologne} & \multicolumn{2}{c}{Ingolstadt}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method & Delay & Change & Delay & Change & Delay & Change\\
+\midrule
+QM-ATSC, Fu et al.\ \citep{fu2026}$^\dagger$ & 196.9 & -41.7\% & 143.8 & -83.2\% & 35.2 & -48.3\%\\
+DQN, CV-only state, all-vehicle reward \citep{ducrocq2023}$^\dagger$ & 138.8 & -17.3\% & -- & -- & -- & --\\
+PressLight-style DQN \citep{wei2019}$^\dagger$ & 118.3 & -3.0\% & 21.2 & +13.9\% & 16.5 & +10.2\%\\
+Max-pressure, loop counts \citep{varaiya2013}$^\dagger$ & 164.8 & -30.4\% & 20.9 & +15.3\% & 15.7 & +16.0\%\\
+\textbf{Proposed} & 114.8 & -- & 24.1 & -- & 18.2 & --\\
+\botrule
+\end{tabular*}
+\footnotetext{$^\dagger$Re-implemented in the present setting (QM-ATSC adapted to the phases used here; DQN of the base code with the cost of Eq.~\ref{eq:cost} as the all-vehicle reward, trained on the synthetic intersection only; PressLight-style DQN with the proposed state and count-based pressure). Five seeds per learner, three for the DQN of \citep{ducrocq2023}.}
+\end{table}

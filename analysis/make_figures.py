@@ -268,8 +268,9 @@ def fig_robustness():
                     markeredgecolor="white", markeredgewidth=0.5, label=st["label"])
         ax.set_xticks(range(len(conds)), [n for _, n in conds], fontsize=6.8)
         ax.grid(axis="x", visible=False)
-        if conds is det and k == 1:
-            ax.set_xlabel("Relative s.d. of loop-count noise, or one failed loop", fontsize=7)
+        if conds is det:
+            if k == 1:
+                ax.set_xlabel("Relative s.d. of loop-count noise, or one failed loop", fontsize=7)
         else:
             ax.set_yscale("log")
             ax.set_yticks([10, 20, 50, 100, 200], ["10", "20", "50", "100", "200"])
