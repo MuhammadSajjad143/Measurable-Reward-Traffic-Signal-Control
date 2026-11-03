@@ -1,0 +1,24 @@
+{
+  "lambda": 0.5,
+  "validation": [
+    {
+      "lambda": 0.5,
+      "mean": 120.73693333333331,
+      "std": 0.9509993980194344,
+      "size": 3
+    },
+    {
+      "lambda": 1.0,
+      "mean": 125.86399999999999,
+      "std": 3.871099728281361,
+      "size": 3
+    },
+    {
+      "lambda": 2.0,
+      "mean": 134.60552333333334,
+      "std": 3.033284418272261,
+      "size": 3
+    }
+  ],
+  "rule": "lowest mean validation delay over 3 seeds, synthetic p=0.2, 10 episodes"
+}

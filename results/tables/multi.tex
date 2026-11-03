@@ -1,0 +1,33 @@
+\begin{table}[t]
+\centering
+\caption{Real three-signal network (RESCO Cologne, 07:00--08:00): network-wide delay and gap.}
+\label{tab:multi}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{$p=0.1$} & \multicolumn{2}{c}{$p=0.2$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Controller & Delay (s) & Gap (s) & Delay (s) & Gap (s)\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Baselines (per signal)}}\\
+Fixed time & 83.1 & 0.4 & 83.1 & 0.1\\
+Max-pressure (CV counts) & 259.7 & 60.1 & 181.6 & 15.8\\
+Max-pressure (loop counts) & 44.0 & -1.5 & 44.0 & -0.8\\
+\multicolumn{5}{@{}l}{\textit{Independent SAC, loop--CV state}}\\
+Privileged$^\dagger$ & 47.7 $\pm$ 6.5 & -0.6 $\pm$ 0.9 & 30.0 $\pm$ 28.6 & 1.9 $\pm$ 7.4\\
+Naive (CV-only) & 26.1 $\pm$ 5.5 & 5.5 $\pm$ 1.7 & 41.2 $\pm$ 63.8 & 1.7 $\pm$ 5.6\\
+IPW & 29.7 $\pm$ 5.1 & 5.1 $\pm$ 1.9 & 56.6 $\pm$ 95.5 & 1.6 $\pm$ 8.5\\
+Loop count & 39.3 $\pm$ 31.8 & 0.1 $\pm$ 4.0 & 32.6 $\pm$ 30.6 & -1.1 $\pm$ 3.9\\
+Lane-stratified & 31.7 $\pm$ 38.4 & 1.5 $\pm$ 1.1 & 43.0 $\pm$ 53.5 & 1.5 $\pm$ 7.8\\
+Fused, pooled fallback & 48.7 $\pm$ 18.0 & 1.9 $\pm$ 12.3 & 42.1 $\pm$ 72.3 & 0.0 $\pm$ 1.5\\
+\textbf{Fused (proposed)} & 34.0 $\pm$ 30.0 & -1.0 $\pm$ 5.4 & 36.3 $\pm$ 29.2 & 1.8 $\pm$ 1.9\\
+\multicolumn{5}{@{}l}{\textit{Pressure reward}}\\
+PressLight-style DQN \citep{wei2019} & 31.4 $\pm$ 32.4 & -1.4 $\pm$ 5.8 & 40.2 $\pm$ 44.6 & -0.8 $\pm$ 1.8\\
+SAC, pressure reward & 61.6 $\pm$ 118.1 & 1.2 $\pm$ 3.7 & 37.2 $\pm$ 33.7 & -1.1 $\pm$ 4.4\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean $\pm$ 95\% $t$-interval across training seeds; each seed is averaged over the same 20 held-out scenarios. Gap = delay of unconnected minus connected vehicles. $^\dagger$Not measurable at a real intersection (upper reference). Three seeds per controller.}
+\end{table}

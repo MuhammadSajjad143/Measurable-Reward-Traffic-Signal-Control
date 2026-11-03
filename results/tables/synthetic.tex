@@ -1,0 +1,40 @@
+\begin{table}[t]
+\centering
+\caption{Synthetic intersection: mean delay and delay gap at the training penetration rate.}
+\label{tab:synthetic}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{$p=0.1$} & \multicolumn{2}{c}{$p=0.2$} & \multicolumn{2}{c}{$p=0.4$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Controller & Delay (s) & Gap (s) & Delay (s) & Gap (s) & Delay (s) & Gap (s)\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Baselines}}\\
+Fixed time & 302.9 & -1.2 & 302.9 & -2.8 & 302.9 & -3.7\\
+Max-pressure (CV counts) & 143.4 & 75.7 & 141.7 & 40.2 & 151.5 & 20.0\\
+Max-pressure (loop counts) & 164.8 & 12.2 & 164.8 & 4.0 & 164.8 & -1.1\\
+QM-ATSC \citep{fu2026} & 196.9 $\pm$ 14.6 & 10.6 $\pm$ 2.0 & 189.6 $\pm$ 23.3 & 2.5 $\pm$ 3.8 & 184.0 $\pm$ 15.6 & 2.2 $\pm$ 2.5\\
+\multicolumn{7}{@{}l}{\textit{SAC, CV-only state}}\\
+Privileged$^\dagger$ & 150.1 $\pm$ 9.7 & 87.2 $\pm$ 8.2 & 111.3 $\pm$ 11.6 & 31.0 $\pm$ 3.0 & 96.7 $\pm$ 19.4 & 12.6 $\pm$ 2.5\\
+Naive (CV-only) & 159.1 $\pm$ 16.0 & 79.4 $\pm$ 7.3 & 128.2 $\pm$ 25.3 & 33.3 $\pm$ 4.4 & 95.4 $\pm$ 4.9 & 12.5 $\pm$ 3.7\\
+IPW & 153.0 $\pm$ 6.7 & 83.1 $\pm$ 7.8 & 115.6 $\pm$ 15.1 & 31.6 $\pm$ 3.7 & 90.0 $\pm$ 5.5 & 14.0 $\pm$ 3.8\\
+Loop count & 154.4 $\pm$ 22.1 & 87.7 $\pm$ 6.2 & 102.8 $\pm$ 6.5 & 27.7 $\pm$ 2.8 & 92.0 $\pm$ 5.4 & 13.4 $\pm$ 2.4\\
+Lane-stratified & 151.3 $\pm$ 12.0 & 84.1 $\pm$ 4.8 & 111.6 $\pm$ 17.0 & 27.5 $\pm$ 2.8 & 91.9 $\pm$ 7.4 & 12.7 $\pm$ 2.1\\
+\multicolumn{7}{@{}l}{\textit{SAC, loop--CV state}}\\
+Privileged$^\dagger$ & 111.7 $\pm$ 8.6 & 4.9 $\pm$ 2.6 & 106.6 $\pm$ 6.4 & 2.7 $\pm$ 2.3 & 104.3 $\pm$ 5.3 & -2.3 $\pm$ 2.0\\
+Naive (CV-only) & 108.5 $\pm$ 8.6 & 20.7 $\pm$ 4.8 & 107.5 $\pm$ 5.5 & 13.7 $\pm$ 2.5 & 104.4 $\pm$ 9.0 & 1.9 $\pm$ 4.1\\
+IPW & 113.5 $\pm$ 10.4 & 22.8 $\pm$ 2.1 & 105.1 $\pm$ 7.0 & 10.3 $\pm$ 5.1 & 105.5 $\pm$ 7.4 & 2.8 $\pm$ 5.5\\
+Loop count & 112.7 $\pm$ 6.5 & 5.4 $\pm$ 2.7 & 109.9 $\pm$ 7.7 & 1.5 $\pm$ 3.9 & 111.5 $\pm$ 11.4 & 0.2 $\pm$ 3.8\\
+Lane-stratified & 115.1 $\pm$ 15.4 & 6.2 $\pm$ 3.5 & 105.5 $\pm$ 6.6 & 3.0 $\pm$ 4.4 & 128.8 $\pm$ 67.5 & -0.9 $\pm$ 2.6\\
+Fused, pooled fallback & 111.3 $\pm$ 5.8 & 7.9 $\pm$ 5.1 & 111.9 $\pm$ 5.4 & 2.7 $\pm$ 4.6 & 111.2 $\pm$ 6.9 & -2.1 $\pm$ 2.5\\
+\textbf{Fused (proposed)} & 114.8 $\pm$ 6.9 & 4.3 $\pm$ 2.7 & 109.8 $\pm$ 2.5 & 3.3 $\pm$ 3.3 & 109.0 $\pm$ 4.6 & -1.6 $\pm$ 3.5\\
+\multicolumn{7}{@{}l}{\textit{Pressure reward, loop--CV state}}\\
+PressLight-style DQN \citep{wei2019} & 118.3 $\pm$ 5.2 & 5.1 $\pm$ 4.5 & 123.2 $\pm$ 7.1 & -0.5 $\pm$ 8.9 & 119.7 $\pm$ 5.5 & -3.2 $\pm$ 2.0\\
+SAC, pressure reward & 127.4 $\pm$ 8.8 & 10.1 $\pm$ 6.9 & 130.8 $\pm$ 11.2 & 2.4 $\pm$ 5.2 & 126.7 $\pm$ 11.1 & -2.1 $\pm$ 3.1\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean $\pm$ 95\% $t$-interval across training seeds; each seed is averaged over the same 20 held-out scenarios. Gap = delay of unconnected minus connected vehicles. $^\dagger$Not measurable at a real intersection (upper reference). Five seeds per learned controller.}
+\end{table}

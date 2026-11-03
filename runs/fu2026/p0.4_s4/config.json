@@ -1,0 +1,8 @@
+{
+  "p": 0.4,
+  "seed": 4,
+  "episodes": 300,
+  "net": "1tls_3x3",
+  "out": "runs/fu2026/p0.4_s4",
+  "method": "fu2026_qm_atsc"
+}

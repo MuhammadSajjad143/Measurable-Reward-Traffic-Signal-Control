@@ -1,0 +1,34 @@
+\begin{table}[t]
+\centering
+\caption{Generalisation beyond the training conditions (synthetic intersection): mean delay (s) under demand patterns not seen in training and with uneven penetration by approach.}
+\label{tab:scenarios}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Scenario & Controller & $p=0.1$ & $p=0.2$ & $p=0.4$\\
+\midrule
+Fixed demand & Fixed time & 325.1 & 325.1 & 325.1\\
+ & Max-pressure (CV counts) & 154.1 & 159.2 & 184.4\\
+ & Max-pressure (loop counts) & 206.4 & 206.4 & 206.4\\
+ & QM-ATSC \citep{fu2026} & 161.2 $\pm$ 7.1 & 165.4 $\pm$ 17.6 & 152.3 $\pm$ 0.8\\
+ & SAC, CV-only state, lane-stratified & 150.1 $\pm$ 17.6 & 97.0 $\pm$ 17.8 & 83.9 $\pm$ 4.3\\
+ & SAC, loop--CV state, lane-stratified & 117.4 $\pm$ 6.3 & 111.3 $\pm$ 4.3 & 141.1 $\pm$ 81.1\\
+ & \textbf{SAC, loop--CV, fused (proposed)} & 115.9 $\pm$ 5.0 & 115.5 $\pm$ 9.7 & 111.5 $\pm$ 1.7\\
+\midrule
+Peak hour & Fixed time & 311.6 & 311.6 & 311.6\\
+ & Max-pressure (CV counts) & 181.3 & 188.8 & 207.9\\
+ & Max-pressure (loop counts) & 228.3 & 228.3 & 228.3\\
+ & QM-ATSC \citep{fu2026} & 171.6 $\pm$ 8.8 & 180.3 $\pm$ 24.0 & 178.4 $\pm$ 1.7\\
+ & SAC, CV-only state, lane-stratified & 194.8 $\pm$ 16.4 & 156.9 $\pm$ 15.2 & 127.8 $\pm$ 5.0\\
+ & SAC, loop--CV state, lane-stratified & 130.4 $\pm$ 5.8 & 131.3 $\pm$ 10.9 & 148.3 $\pm$ 65.2\\
+ & \textbf{SAC, loop--CV, fused (proposed)} & 138.1 $\pm$ 9.8 & 134.2 $\pm$ 8.0 & 127.2 $\pm$ 7.8\\
+\midrule
+Uneven penetration & Fixed time & 302.9 & 302.9 & 302.9\\
+ & Max-pressure (CV counts) & 139.4 & 154.5 & 169.7\\
+ & Max-pressure (loop counts) & 164.8 & 164.8 & 164.8\\
+ & QM-ATSC \citep{fu2026} & 199.9 $\pm$ 20.3 & 194.0 $\pm$ 25.1 & 191.0 $\pm$ 22.5\\
+ & SAC, CV-only state, lane-stratified & 177.4 $\pm$ 17.1 & 118.2 $\pm$ 15.7 & 106.5 $\pm$ 10.6\\
+\bottomrule
+\end{tabular}
+\end{table}

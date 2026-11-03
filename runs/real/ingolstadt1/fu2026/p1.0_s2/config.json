@@ -1,0 +1,8 @@
+{
+  "p": 1.0,
+  "seed": 2,
+  "episodes": 300,
+  "net": "ingolstadt1",
+  "out": "runs/real/ingolstadt1/fu2026/p1.0_s2",
+  "method": "fu2026_qm_atsc"
+}

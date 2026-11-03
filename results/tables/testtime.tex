@@ -1,0 +1,35 @@
+\begin{table}[t]
+\centering
+\caption{Test-time robustness at $p=0.1$: mean delay (s) with noisy loop counts (relative standard deviation 5--20\%), one failed loop detector that reports zero, and calibrated demand scaled by 1.3 and 1.6. Models are trained at $p=0.1$ with exact counts and nominal demand.}
+\label{tab:testtime}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & & \multicolumn{3}{c}{Loop-count noise} & & \multicolumn{2}{c}{Demand}\\
+\cmidrule(lr){3-5}\cmidrule(lr){7-8}
+Controller & Nominal & 5\% & 10\% & 20\% & Failed loop & $\times1.3$ & $\times1.6$\\
+\midrule
+\multicolumn{8}{@{}l}{\textit{Cologne}}\\
+\textbf{Proposed} & 24.1 & 24.1 & 24.1 & 24.0 & 41.1 (26.2) & 47.2 (33.1) & 94.8 (80.2)\\
+SAC, lane-stratified & 27.0 & 53.1 (27.8) & 41.6 (28.0) & 26.6 & 39.0 (31.6) & 65.5 & 131.7 (164.8)\\
+PressLight-style DQN & 21.2 (19.1) & 18.8 & 32.0 (19.0) & 19.3 & 31.6 (24.8) & 47.1 (33.7) & 103.8\\
+SAC, pressure reward & 24.5 & -- & -- & -- & -- & 65.9 (75.7) & 112.6\\
+Max-pressure (loops) & 20.9 & 21.1 & 21.0 & 21.4 & 25.3 & 36.6 & 144.3\\
+\multicolumn{8}{@{}l}{\textit{Ingolstadt}}\\
+\textbf{Proposed} & 18.2 & 18.2 & 18.1 & 17.7 & 22.1 & 31.0 & 54.0\\
+SAC, lane-stratified & 19.0 & 19.0 & 19.1 & 18.7 & 21.6 & 35.3 & 55.6\\
+PressLight-style DQN & 16.5 & 16.5 & 16.7 & 16.6 & 32.1 & 27.5 & 50.4\\
+SAC, pressure reward & 17.6 & -- & -- & -- & -- & 30.0 & 52.9\\
+Max-pressure (loops) & 15.7 & 15.9 & 15.6 & 15.5 & 20.3 & 24.9 & 40.1\\
+\multicolumn{8}{@{}l}{\textit{Synthetic}}\\
+\textbf{Proposed} & 114.8 & 114.1 & 114.2 & 113.0 & 132.1 & -- & --\\
+SAC, lane-stratified & 115.1 & 107.8 & 107.2 & 108.0 & 131.7 & -- & --\\
+PressLight-style DQN & 118.3 & 118.4 & 120.2 & 116.3 & 130.4 & -- & --\\
+Max-pressure (loops) & 164.8 & 165.3 & 164.3 & 166.0 & 176.1 & -- & --\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean over five training seeds (one run for max-pressure), each averaged over the same 20 held-out scenarios; the median over seeds is given in parentheses when it differs from the mean by more than 10\%. The synthetic intersection has no calibrated demand to scale.}
+\end{table}

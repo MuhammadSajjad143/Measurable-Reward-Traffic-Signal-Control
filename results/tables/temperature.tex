@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Final policy entropy (nats) with a fixed temperature $\alpha=0.2$ and learned temperature $\alpha$ with automatic tuning (mean of the last 10\% of training, CV-only state). The last row is the ratio of the learned temperatures of the naive and IPW rewards, which Corollary~\ref{cor:temp} predicts to be about $p$.}
+\label{tab:temperature}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+& $p=0.1$ & $p=0.2$ & $p=0.4$\\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Entropy, fixed $\alpha=0.2$}}\\
+Privileged$^\dagger$ & 0.17 & 0.07 & 0.07\\
+Naive (CV-only) & 0.58 & 0.31 & 0.17\\
+IPW & 0.09 & 0.06 & 0.06\\
+\multicolumn{4}{@{}l}{\textit{Learned temperature, automatic tuning}}\\
+Privileged$^\dagger$ & 1.5939 & 1.8961 & 1.8527\\
+Naive (CV-only) & 0.2773 & 0.4948 & 0.8089\\
+IPW & 1.9950 & 2.1718 & 1.9251\\
+Lane-stratified & 1.6686 & 1.9864 & 1.8651\\
+Ratio naive / IPW & 0.14 & 0.23 & 0.42\\
+\bottomrule
+\end{tabular}
+\end{table}

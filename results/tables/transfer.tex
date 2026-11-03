@@ -1,0 +1,35 @@
+\begin{table}[t]
+\centering
+\caption{Penetration drift: mean delay (s) when a model trained at one $p$ is tested at another. Diagonal = test $p$ equals training $p$.}
+\label{tab:transfer}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllcccc@{}}
+\toprule
+Network & Controller & Train $p$ & Test 0.1 & Test 0.2 & Test 0.4 & Test 1.0\\
+\midrule
+Synthetic & CV-only state, stratified & 0.1 & 151.3 & 171.9 & 279.5 & 532.0\\
+ &  & 0.2 & 154.6 & 111.6 & 128.3 & 235.2 (188.7)\\
+ &  & 0.4 & 207.4 & 104.6 & 91.9 & 104.5\\
+\cmidrule(l){2-7}
+ & Loop--CV state, stratified & 0.1 & 115.1 & 108.1 & 111.5 & 114.8\\
+ &  & 0.2 & 106.9 & 105.5 & 103.5 & 105.5\\
+ &  & 0.4 & 132.4 (107.5) & 128.4 (105.5) & 128.8 (105.9) & 123.5 (102.2)\\
+\cmidrule(l){2-7}
+ & \textbf{Proposed} & 0.1 & 114.8 & 115.8 & 117.4 & 127.2\\
+ &  & 0.2 & 113.7 & 109.8 & 114.8 & 110.8\\
+ &  & 0.4 & 114.2 & 113.8 & 109.0 & 104.6\\
+\midrule
+Cologne & \textbf{Proposed} & 0.1 & 24.1 & 41.0 (33.7) & 23.7 & 22.6\\
+ &  & 0.2 & 23.5 & 36.1 (22.5) & 23.0 & 38.0 (24.6)\\
+ &  & 0.4 & 61.6 (27.5) & 24.7 & 24.9 & 49.3 (23.7)\\
+\midrule
+Ingolstadt & \textbf{Proposed} & 0.1 & 18.2 & 17.7 & 17.3 & 18.9\\
+ &  & 0.2 & 18.4 & 18.0 & 17.9 & 19.2\\
+ &  & 0.4 & 17.5 & 17.3 & 17.3 & 17.3\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean over five training seeds; the median over seeds is given in parentheses when it differs from the mean by more than 10\%.}
+\end{table}

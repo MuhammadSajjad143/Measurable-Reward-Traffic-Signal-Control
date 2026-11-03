@@ -1,0 +1,17 @@
+{
+  "reward": "naive",
+  "p": 0.2,
+  "seed": 3,
+  "steps": 180000,
+  "warmup": 10000,
+  "alpha": "auto",
+  "alpha_init": 0.2,
+  "target_entropy_ratio": 0.5,
+  "reward_scale": 50.0,
+  "gamma": 0.99,
+  "lr": 0.0003,
+  "batch_size": 128,
+  "device": "cuda",
+  "ckpt_every": 50,
+  "out": "runs/sac_auto/naive_p0.2_s3"
+}

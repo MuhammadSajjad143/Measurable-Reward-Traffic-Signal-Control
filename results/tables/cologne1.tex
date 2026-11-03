@@ -1,0 +1,37 @@
+\begin{table}[t]
+\centering
+\caption{Real intersection (Cologne, RESCO): mean delay and delay gap at the training penetration rate.}
+\label{tab:cologne1}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{$p=0.1$} & \multicolumn{2}{c}{$p=0.2$} & \multicolumn{2}{c}{$p=0.4$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Controller & Delay (s) & Gap (s) & Delay (s) & Gap (s) & Delay (s) & Gap (s)\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Baselines}}\\
+Fixed time & 127.2 & -1.8 & 127.2 & -0.5 & 127.2 & -1.5\\
+Max-pressure (CV counts) & 38.8 & 20.4 & 28.3 & 9.2 & 23.6 & 4.2\\
+Max-pressure (loop counts) & 20.9 & -0.1 & 20.9 & -0.2 & 20.9 & -0.1\\
+QM-ATSC \citep{fu2026} & 143.8 $\pm$ 19.0 & -0.4 $\pm$ 2.1 & 133.9 $\pm$ 13.3 & -0.9 $\pm$ 2.1 & 130.8 $\pm$ 25.3 & -1.1 $\pm$ 1.0\\
+\multicolumn{7}{@{}l}{\textit{SAC, CV-only state}}\\
+Privileged$^\dagger$ & 36.5 $\pm$ 3.7 & 18.4 $\pm$ 2.1 & 68.1 $\pm$ 88.8 & 2.6 $\pm$ 26.3 & 28.4 $\pm$ 16.2 & 3.5 $\pm$ 1.9\\
+Lane-stratified & 36.2 $\pm$ 3.2 & 18.4 $\pm$ 0.2 & 26.0 $\pm$ 0.3 & 8.5 $\pm$ 0.7 & 24.4 $\pm$ 6.8 & 4.2 $\pm$ 0.8\\
+\multicolumn{7}{@{}l}{\textit{SAC, loop--CV state}}\\
+Privileged$^\dagger$ & 24.2 $\pm$ 1.3 & 0.8 $\pm$ 0.2 & 40.6 $\pm$ 26.7 & 2.4 $\pm$ 3.0 & 32.8 $\pm$ 24.3 & -0.6 $\pm$ 3.0\\
+Naive (CV-only) & 53.4 $\pm$ 36.3 & 16.2 $\pm$ 8.3 & 45.1 $\pm$ 23.6 & 6.7 $\pm$ 2.5 & 38.8 $\pm$ 35.6 & 5.2 $\pm$ 4.6\\
+IPW & 47.2 $\pm$ 38.6 & 12.9 $\pm$ 5.9 & 73.6 $\pm$ 60.6 & 0.1 $\pm$ 15.3 & 43.6 $\pm$ 27.6 & 2.3 $\pm$ 3.2\\
+Loop count & 43.8 $\pm$ 28.0 & 2.5 $\pm$ 4.2 & 31.8 $\pm$ 7.5 & 1.5 $\pm$ 1.4 & 54.7 $\pm$ 33.1 & 0.2 $\pm$ 4.7\\
+Lane-stratified & 27.0 $\pm$ 2.3 & 4.3 $\pm$ 1.3 & 45.0 $\pm$ 35.8 & -0.8 $\pm$ 7.8 & 38.9 $\pm$ 43.0 & -1.6 $\pm$ 6.7\\
+Fused, pooled fallback & 25.8 $\pm$ 6.3 & 1.3 $\pm$ 1.4 & 30.2 $\pm$ 19.7 & 0.6 $\pm$ 0.3 & 23.8 $\pm$ 1.5 & 0.6 $\pm$ 0.3\\
+\textbf{Fused (proposed)} & 24.1 $\pm$ 1.6 & 1.5 $\pm$ 0.8 & 36.1 $\pm$ 36.7 & 0.8 $\pm$ 0.6 & 24.9 $\pm$ 1.6 & 0.5 $\pm$ 0.3\\
+\multicolumn{7}{@{}l}{\textit{Pressure reward, loop--CV state}}\\
+PressLight-style DQN \citep{wei2019} & 21.2 $\pm$ 5.9 & -0.2 $\pm$ 1.1 & 18.6 $\pm$ 0.5 & -0.0 $\pm$ 0.4 & 33.7 $\pm$ 41.2 & -2.2 $\pm$ 6.8\\
+SAC, pressure reward & 24.5 $\pm$ 2.2 & 0.9 $\pm$ 0.3 & 23.4 $\pm$ 1.7 & 0.3 $\pm$ 0.2 & 37.2 $\pm$ 35.5 & 1.9 $\pm$ 3.7\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean $\pm$ 95\% $t$-interval across training seeds; each seed is averaged over the same 20 held-out scenarios. Gap = delay of unconnected minus connected vehicles. $^\dagger$Not measurable at a real intersection (upper reference). Five seeds for the loop--CV state and the pressure reward; three for the CV-only state.}
+\end{table}

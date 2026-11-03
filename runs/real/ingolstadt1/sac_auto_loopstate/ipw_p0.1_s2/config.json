@@ -1,0 +1,22 @@
+{
+  "reward": "ipw",
+  "p": 0.1,
+  "seed": 2,
+  "steps": 180000,
+  "warmup": 10000,
+  "alpha": "auto",
+  "alpha_init": 0.2,
+  "target_entropy_ratio": 0.5,
+  "reward_scale": 50.0,
+  "gamma": 0.99,
+  "lr": 0.0003,
+  "batch_size": 128,
+  "device": "cuda",
+  "ckpt_every": 50,
+  "algo": "sac",
+  "net": "ingolstadt1",
+  "p_mult": null,
+  "demand": "random",
+  "obs_loop": true,
+  "out": "runs/real/ingolstadt1/sac_auto_loopstate/ipw_p0.1_s2"
+}

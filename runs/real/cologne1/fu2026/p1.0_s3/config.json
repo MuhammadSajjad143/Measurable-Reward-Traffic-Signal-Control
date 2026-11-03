@@ -1,0 +1,8 @@
+{
+  "p": 1.0,
+  "seed": 3,
+  "episodes": 300,
+  "net": "cologne1",
+  "out": "runs/real/cologne1/fu2026/p1.0_s3",
+  "method": "fu2026_qm_atsc"
+}

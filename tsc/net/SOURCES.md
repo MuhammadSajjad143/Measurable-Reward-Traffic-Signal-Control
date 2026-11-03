@@ -1,0 +1,8 @@
+# Network sources
+
+- `1tls_3x3`: synthetic 4-approach intersection from the open code of R. Ducrocq and N. Farhi (MIT licence).
+- `cologne1`: single intersection from the RESCO benchmark (J. Ault and G. Sharon, "Reinforcement learning benchmarks for traffic signal control", NeurIPS Datasets and Benchmarks 2021). It is based on the TAPAS Cologne scenario, with real calibrated demand from 07:00 to 08:00 (2,015 trips) and a Creative Commons licence (file in the folder). Copied from github.com/LucasAlegre/sumo-rl (sumo_rl/nets/RESCO).
+- `ingolstadt1`: single intersection from the RESCO benchmark. It is based on the InTAS Ingolstadt scenario, with real calibrated demand from 16:00 to 17:00 (1,716 vehicles including buses) and a GPL licence (file in the folder). From the same source.
+- `cologne3`: three signalised intersections from the RESCO benchmark, from the same TAPAS Cologne scenario and time window as `cologne1` (07:00 to 08:00, real calibrated demand), with the same Creative Commons licence (file in the folder). From the same source.
+- `ingolstadt7`: seven signalised intersections from the RESCO benchmark, from the same InTAS Ingolstadt scenario and time window as `ingolstadt1` (16:00 to 17:00, real calibrated demand), with the same GPL licence (file in the folder). From the same source. Held out: not used to choose the reward weight or any hyperparameter.
+- `cologne8`: eight signalised intersections from the RESCO benchmark, from the same TAPAS Cologne scenario and time window as `cologne1` (07:00 to 08:00, real calibrated demand), with the same Creative Commons licence (file in the folder). From the same source. Held out: added after all design decisions.

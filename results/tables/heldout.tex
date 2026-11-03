@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\caption{Held-out real networks (not used to choose the reward weight or any hyperparameter): network-wide delay and gap at $p=0.1$.}
+\label{tab:heldout}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Ingolstadt, 7 signals} & \multicolumn{2}{c}{Cologne, 8 signals}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Controller & Delay (s) & Gap (s) & Delay (s) & Gap (s)\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Baselines (per signal)}}\\
+Fixed time & 74.5 & 1.9 & 122.8 & -1.0\\
+Max-pressure (CV counts) & 284.2 & 141.1 & 131.6 & 96.9\\
+Max-pressure (loop counts) & 33.4 & 0.8 & 23.0 & -0.3\\
+\multicolumn{5}{@{}l}{\textit{Learned, one agent per signal, loop--CV state}}\\
+SAC, lane-stratified & 40.8 $\pm$ 3.5 & 16.9 $\pm$ 3.9 & -- & --\\
+SAC, fused, pooled fallback & 39.1 $\pm$ 3.9 & 14.2 $\pm$ 2.2 & 21.1 $\pm$ 1.0 & 3.0 $\pm$ 0.3\\
+\textbf{SAC, fused (proposed)} & 39.6 $\pm$ 1.5 & 14.2 $\pm$ 1.5 & 21.2 $\pm$ 0.4 & 2.7 $\pm$ 1.1\\
+PressLight-style DQN & 39.7 $\pm$ 6.5 & 0.2 $\pm$ 10.0 & 21.6 $\pm$ 2.4 & 0.9 $\pm$ 2.8\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Mean $\pm$ 95\% $t$-interval across three training seeds; each seed is averaged over the same 20 held-out scenarios. Gap = delay of unconnected minus connected vehicles. RESCO scenarios with calibrated demand: Ingolstadt 16:00--17:00, Cologne 07:00--08:00.}
+\end{table}

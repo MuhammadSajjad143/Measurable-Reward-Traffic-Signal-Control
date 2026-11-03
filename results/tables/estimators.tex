@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Accuracy of the measurable cost estimates on recorded SUMO snapshots (no learning). Relative bias and relative RMSE with respect to the true cost; phase agreement = share of snapshots in which the estimate ranks the same phase as most congested as the true cost.}
+\label{tab:estimators_acc}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{$p=0.1$} & \multicolumn{3}{c}{$p=0.2$} & \multicolumn{3}{c}{$p=0.4$}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Estimator & Bias & RMSE & Agree. & Bias & RMSE & Agree. & Bias & RMSE & Agree.\\
+\midrule
+Naive (CV-only) & -90.0\% & 108.6\% & 49\% & -80.0\% & 96.6\% & 58\% & -60.0\% & 72.5\% & 69\%\\
+IPW & -0.1\% & 29.2\% & 49\% & -0.0\% & 19.6\% & 58\% & +0.0\% & 12.0\% & 69\%\\
+Loop count & +7.3\% & 7.7\% & 86\% & +7.3\% & 7.7\% & 86\% & +7.3\% & 7.7\% & 86\%\\
+Lane-stratified & +1.6\% & 5.5\% & 86\% & +1.2\% & 3.9\% & 90\% & +0.6\% & 2.5\% & 93\%\\
+\bottomrule
+\end{tabular}
+\end{table}
